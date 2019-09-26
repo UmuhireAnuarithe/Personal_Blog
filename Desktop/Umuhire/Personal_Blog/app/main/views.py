@@ -4,20 +4,73 @@ from . import main
 # from ..request import get_movies,get_movie,search_movie
 from .forms import UpdateProfile
 from .. import db,photos
-from ..models import User
+from ..models import User,Blog
 from flask_login import login_required,current_user
 import markdown2 
 
 
+
 @main.route('/')
 def index():
-    '''
-    View root page function that returns the index page and its data
-    '''
-    title='home'
-    return render_template('index.html', title = title)
+
+    blogs = Blog.query.all()
+    # quote = get_quote()
+    title = " Personal blog"
+    return render_template('index.html', title = title, blogs=blogs)
 
 
+@main.route('/blog/new', methods = ['GET','POST'])
+@login_required
+def new_blog():
+    form = BlogForm()
+    if form.validate_on_submit():
+        title = form.title.data
+        blog = form.text.data
+       
+
+        new_blog = Blog(blog_title = title,blog_content = blog,user = current_user,likes = 0, dislikes = 0)
+        new_blog.save_blog()
+        return redirect(url_for('main.index'))
+
+    title = 'New Blog'
+    return render_template('new_blog.html', title = title, blog_form = form)
+
+@main.route('/blog/<int:id>', methods = ["GET","POST"])
+def blog(id):
+    blog = Blog.get_blog(id)
+    posted_date = blog.posted.strftime('%b %d, %Y')
+    if request.args.get('like'):
+        blog.likes += 1
+
+        db.session.add(blog)
+        db.session.commit()
+
+        return redirect(url_for('.blog', id = blog.id))
+
+        
+
+    elif request.args.get('dislike'):
+        blog.dislikes += 1
+
+        db.session.add(pitch)
+        db.session.commit()
+
+        return redirect(url_for('.blog', id = blog.id))
+
+    form = CommentForm()
+    if form.validate_on_submit():
+        comment = form.text.data
+
+        new_comment = Comment(comment = comment, user = current_user, blog_id = blog)
+
+        new_comment.save_comment()
+
+    comments = Comment.get_comments(blog)
+
+    return render_template('blog.html', blog = blog, comment_form = form,comments = comments, date = posted_date)
+
+
+#******************************************************#
 @main.route('/user/<uname>')
 def profile(uname):
     user = User.query.filter_by(username = uname).first()
