@@ -32,18 +32,26 @@
 }
 </style>
 <div class="col-md-12">
-    {{macro.displayBlogs(blogs)}}
-  </div>
-</div>
-<div class="col-md-12">
     <div class="container">
-      <div class="jumbotron" style="background-color:bisque">
+      <div class="jumbotron" style="background-color:bisque;       
+        border-radius: 50%;
+        border-right: 3px solid #d8f0f3;
+        border-bottom: 3px solid #dceef0;
+        text-align: center;
+        height: 100%;
+        width: 1;
+        margin-bottom: 3%;">
         <p>{{ quote.quote }}</p>
         <h2>{{ quote.author }}</h2>
         <h3>{{ quote.id }}</h3>
       </div>
     </div>
 </div>
+<div class="col-md-12">
+    {{macro.displayBlogs(blogs)}}
+  </div>
+</div>
+
 
 {%endblock%}
 

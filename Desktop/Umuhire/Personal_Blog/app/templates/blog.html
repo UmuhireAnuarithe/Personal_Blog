@@ -3,14 +3,17 @@
 {% import "bootstrap/wtf.html" as wtf %}
 <!-- Content block -->
 {%block content%}
+
 <div class="container" style="font-family: 'Indie Flower', cursive;">
+
     <div class="row">
+       <div class="col-md-4">
         <h3>{{blog.blog_title}}</h3>
         <hr>
         <p>{{blog.blog_content}}</p>
         <span>
         <p>Posted on {{date}} by {{blog.user.username| capitalize}}</p>
-    
+       </div>  
     </div>
     <div class="row">
         <h4 style="padding:20px;">Comments</h4>

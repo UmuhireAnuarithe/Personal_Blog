@@ -1,17 +1,37 @@
 {% macro displayBlogs(blogs_list)%}
     {%for blog in blogs_list%}
-        <div class="col-md-12">
-            <div class="well well-lg" style="padding:50px;">
-                <h4>{{blog.blog_title}}</h4>
-                <p>{{blog.blog_content| truncate}}</p>
-                <p>Written by:  {{blog.user.username}}</p>
-                <a href="/blog/{{blog.id}}" class="btn  pull-right" style="background-color:grey">Read</a> </p>
-                <a href="/delete_blog/{{blog.id}}" class="btn btn-danger pull-right" style="margin-bottom:60px;">Delete Blog</a>
-                
-                
-        </div>
+       
+<div class="container" style="font-family: 'Indie Flower', cursive;">
+
+        <div class="row">
+           <div class="col-md-4">
+            
+                    <h4>{{blog.blog_title}}</h4>
+                    <p>{{blog.blog_content| truncate}}</p>
+                    <p>Written by:  {{blog.user.username}}</p>
+                    <a href="/blog/{{blog.id}}" class="btn  pull-right" style="background-color:grey">Read</a> </p>
+                    <a href="/delete_blog/{{blog.id}}" class="btn btn-danger pull-right" style="margin-bottom:60px;">Delete Blog</a>
             </div>
-        </div>
+            <div class="col-md-4">
+
+                    <h4>{{blog.blog_title}}</h4>
+                    <p>{{blog.blog_content| truncate}}</p>
+                    <p>Written by:  {{blog.user.username}}</p>
+                    <a href="/blog/{{blog.id}}" class="btn  pull-right" style="background-color:grey">Read</a> </p>
+                    <a href="/delete_blog/{{blog.id}}" class="btn btn-danger pull-right" style="margin-bottom:60px;">Delete Blog</a>
+            </div>
+            <div class="col-md-4">
+
+                        <h4>{{blog.blog_title}}</h4>
+                        <p>{{blog.blog_content| truncate}}</p>
+                        <p>Written by:  {{blog.user.username}}</p>
+                        <a href="/blog/{{blog.id}}" class="btn  pull-right" style="background-color:grey">Read</a> </p>
+                        <a href="/delete_blog/{{blog.id}}" class="btn btn-danger pull-right" style="margin-bottom:60px;">Delete Blog</a>
+            </div>
+                        
+            
+        </div > 
+</div>
     {%endfor%}
 {%endmacro%}
 
