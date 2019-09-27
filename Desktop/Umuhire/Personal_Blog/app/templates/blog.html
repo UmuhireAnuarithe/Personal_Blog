@@ -10,12 +10,7 @@
         <p>{{blog.blog_content}}</p>
         <span>
         <p>Posted on {{date}} by {{blog.user.username| capitalize}}</p>
-        <a href="/blog/{{blog.id}}?like=1">
-            <i class="far fa-thumbs-up"></i>
-        </a>{{blog.likes}} <a href="/blog/{{blog.id}}?dislike=1">
-            <i class="far fa-thumbs-down"></i>
-        </a>{{blog.dislikes}}</span>
-
+    
     </div>
     <div class="row">
         <h4 style="padding:20px;">Comments</h4>
@@ -27,4 +22,4 @@
     </div>
 
 </div>
-{%endblock%}
+{%endblock%}}

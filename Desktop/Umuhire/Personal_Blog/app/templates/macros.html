@@ -3,9 +3,9 @@
         <div class="col-md-12">
             <div class="well well-lg" style="padding:50px;">
                 <h4>{{blog.blog_title}}</h4>
-                <p>{{blog.blog_content| truncate(80)}}</p>
+                <p>{{blog.blog_content| truncate}}</p>
                 <p>Written by:  {{blog.user.username}} <a href="/blog/{{blog.id}}" class="btn  pull-right" style="background-color:grey">Read</a> </p>
-                <a href="/delete_blog/{{blog.id}}" class="btn btn-primary pull-right" style="margin-bottom:60px;">Delete Blog</a>
+                <a href="/delete_blog/{{blog.id}}" class="btn btn-danger pull-right" style="margin-bottom:60px;">Delete Blog</a>
                 
                 
         </div>
@@ -13,6 +13,7 @@
         </div>
     {%endfor%}
 {%endmacro%}
+
 
 {%macro displayComments(comments_list)%}
     {%for comment in comments_list%}
