@@ -13,7 +13,8 @@ def index():
 
     blogs = Blog.query.all()
     quote = get_quote()
-    return render_template('index.html', title = 'Blog App - Home',quote=quote, blogs=blogs)
+    
+    return render_template('index.html', title = 'home-blog',quote=quote, blogs=blogs)
 
 
 @main.route('/user/<uname>')
@@ -67,20 +68,35 @@ def new_blog():
         blog = form.text.data
        
 
-        new_blog = Blog(blog_title = title,blog_content = blog,user = current_user,likes = 0, dislikes = 0)
+        new_blog = Blog(blog_title = title,blog_content = blog,user = current_user)
         new_blog.save_blog()
         return redirect(url_for('main.index'))
 
     title = 'New Blog'
     return render_template('new_blog.html', title = title, blog_form = form)
 
+
 @main.route('/blog/<int:id>', methods = ["GET","POST"])
 def blog(id):
     blog = Blog.get_blog(id)
     posted_date = blog.posted.strftime('%b %d, %Y')
-    
+    if request.args.get('like'):
+        blog.likes += 1
 
-    return redirect(url_for('.blog', id = blog.id))
+        db.session.add(blog)
+        db.session.commit()
+
+        return redirect(url_for('.blog', id = blog.id))
+
+        
+
+    elif request.args.get('dislike'):
+        blog.dislikes += 1
+
+        db.session.add(pitch)
+        db.session.commit()
+
+        return redirect(url_for('.blog', id = blog.id))
 
     form = CommentForm()
     if form.validate_on_submit():
@@ -93,7 +109,6 @@ def blog(id):
     comments = Comment.get_comments(blog)
 
     return render_template('blog.html', blog = blog, comment_form = form,comments = comments, date = posted_date)
-
 
 
 @main.route('/user/<uname>/blogs', methods = ['GET','POST'])
