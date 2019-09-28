@@ -1,11 +1,14 @@
-
 {% extends 'base.html'%}
 
 {% block content %}
 <div class="container">
-  <div class="row">
+  <!-- <div class="row"> -->
+      
+        
+    <div class="jumbutron" style="text-align:center;">
     <!-- displaying  Username-->
-    <h2 class="text-center" style="color: #372e5f; border-bottom: 2px solid #372e5f; padding-bottom: 10px;"> {{user.username| capitalize}} </h2>
+    <h2 class="text-center" style="color: black; border-bottom: 2px solid#000; padding-bottom: 10px;">
+      {{user.username| capitalize}} </h2>
     <!--Display profile photo-->
     <div class="col-md-4">
       {% if user.profile_pic_path %}
@@ -17,23 +20,27 @@
       {% if user == current_user %}
       <form action="{{url_for('main.update_pic',uname=user.username)}}" method="post" enctype="multipart/form-data">
         <input type="file" name="photo" class="form-control" required>
-        <button class="btn" type="submit" style="margin-top: 10px; background-color: #372e5f; color: #fff;">Update Profile Picture</button>
+        <button class="btn" type="submit" style="margin-top: 10px; background-color: black; color: #fff;">Upload
+          Profile Picture</button>
       </form>
       {% endif %}
     </div>
     <div class="col-md-8">
-        <h3 style="border-bottom: 1px solid #372e5f; padding-bottom: 10px; color: #372e5f;"> Bio </h3>
-      <!--Displaying user bio-->
-      {% if user.bio %}
-      <p> {{user.bio}}</p>
-      {%else%}
-      <p> {{user.username}} has no bio </p>
-      {% endif %}
+     
+          <h3 style=" padding-bottom: 10px; color: #ffffff;"> Biography </h3>
+          <!--Displaying user bio-->
+          {% if user.bio %}
+          <p> {{user.bio}}</p>
+          {%else%}
+          <p> {{user.username}} has no bio </p>
+          {% endif %}
 
-      {% if user == current_user %}
-      <a class="btn" style="background-color: #372e5f; color: #fff;" href="{{url_for('main.update_profile',uname=user.username)}}">Edit Bio</a>
-      {% endif %}
+          {% if user == current_user %}
+          <a class="btn" style="background-color: black; color: #fff;" href="{{url_for('main.update_profile',uname=user.username)}}">Edit
+            Biography</a>
+          {% endif %}
+        </div>
+      </div>
+      {% endblock %}
     </div>
   </div>
-  {% endblock %}
-</div>
