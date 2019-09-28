@@ -5,21 +5,24 @@
 
 {%block content%}
 <style>
- 
-@media screen and (max-width: 1024px) { /* Specific to this particular image */
-  img.bg {
-    left: 50%;
-    margin-left: -512px;   /* 50% */
-  }
-  body{
-    background-image: url('/static/photos/images.jepg')
-}
-  
-}
+  @media screen and (max-width: 1024px) {
 
+    /* Specific to this particular image */
+    img.bg {
+      left: 50%;
+      margin-left: -512px;
+      /* 50% */
+    }
+
+    body {
+      background-image: url('/static/photos/images.jepg')
+    }
+
+  }
 </style>
+
 <body>
-<div class="col-md-12">
+  <div class="col-md-12">
     <div class="container">
       <div class="jumbotron" style="background-color:bisque;       
         border-radius: 50%;
@@ -36,23 +39,25 @@
         <h3>{{ quote.id }}</h3>
       </div>
     </div>
-</div>
-<div class="col-md-4">
+  </div>
+  <div class="col-md-4">
+    <link href="https://fonts.googleapis.com/css?family=Vollkorn&display=swap" rel="stylesheet">
     <h2>Publish your blog here</h2>
-     <p>You can share your thoughts and ideas with other people through blogging,by
-         reading published blogs or publish your own blog about an category you want .
-         Health , Education ,Mativation and Insipration ,funny,Vission ,Passion etc .
-     </p>
-   </div>
-<div class="col-md-4">
+    <p style="font-family: 'Vollkorn', serif;font-size:30px">You can share your thoughts and ideas with other people through blogging,by
+      reading published blogs or publish your own blog about an category you want .
+      Health , Education ,Mativation and Insipration ,funny,Vission ,Passion etc .
+    </p>
+  </div>
+  <div class="col-md-4">
     {{macro.displayBlogs(blogs)}}
   </div>
-  
-     <div class="col-md-4">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVqxrPf7GLfX66coFrH3L8ey_W0RVCqgsm4NJn8WCc59VlYVYy">
-   </div>
-</div>
+
+  <div class="col-md-4">
+    <h2>published blogs</h2>
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVqxrPf7GLfX66coFrH3L8ey_W0RVCqgsm4NJn8WCc59VlYVYy">
+  </div>
+  </div>
 
 
-{%endblock%}
+  {%endblock%}
 </body>
