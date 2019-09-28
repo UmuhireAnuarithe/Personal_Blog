@@ -80,24 +80,6 @@ def new_blog():
 def blog(id):
     blog = Blog.get_blog(id)
     posted_date = blog.posted.strftime('%b %d, %Y')
-    if request.args.get('like'):
-        blog.likes += 1
-
-        db.session.add(blog)
-        db.session.commit()
-
-        return redirect(url_for('.blog', id = blog.id))
-
-        
-
-    elif request.args.get('dislike'):
-        blog.dislikes += 1
-
-        db.session.add(pitch)
-        db.session.commit()
-
-        return redirect(url_for('.blog', id = blog.id))
-
     form = CommentForm()
     if form.validate_on_submit():
         comment = form.text.data
@@ -132,9 +114,10 @@ def subscribe():
         db.session.commit()
         return redirect(url_for('main.index'))
 
-    return render_template('subscribe.html', form=form)
+    return render_template('subscribes.html', form=form)
 
 @main.route('/delete_blog/<int:id>', methods = ["GET","POST"])
+@login_required
 def delete_blog(id):
     blog = Blog.get_blog(id)
     
