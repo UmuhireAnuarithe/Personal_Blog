@@ -127,6 +127,27 @@ def delete_blog(id):
     return redirect(url_for('.index'))
 
 
+
+@main.route('/user/<uname>/update', methods = ['GET','POST'])
+@login_required
+def update_profile(uname):
+    user = User.query.filter_by(username = uname).first()
+    if user is None:
+        abort(404)
+
+    form = UpdateBlog()
+
+    if form.validate_on_submit():
+        user.bio = form.bio.data
+        db.session.add(user)
+        db.session.commit()
+
+        return redirect(url_for('.profile',uname = user.username))
+
+    return render_template('profile/update.html', form = form)
+
+
+
 @main.route('/delete_comment/<int:id>', methods = ["GET","POST"])
 @login_required
 def delete_comment(id):
