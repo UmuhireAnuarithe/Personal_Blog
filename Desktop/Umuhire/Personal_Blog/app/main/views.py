@@ -13,7 +13,7 @@ def index():
 
     blogs = Blog.query.all()
     quote = get_quote()
-    
+    comments = Comment.query.all()
     return render_template('index.html', title = 'home-blog',quote=quote, blogs=blogs)
 
 
@@ -122,6 +122,17 @@ def delete_blog(id):
     blog = Blog.get_blog(id)
     
     db.session.delete(blog)
+    db.session.commit()
+
+    return redirect(url_for('.index'))
+
+
+@main.route('/delete_comment/<int:id>', methods = ["GET","POST"])
+@login_required
+def delete_comment(id):
+    comment = Comment.get_comments(id)
+    
+    db.session.delete(comment)
     db.session.commit()
 
     return redirect(url_for('.index'))

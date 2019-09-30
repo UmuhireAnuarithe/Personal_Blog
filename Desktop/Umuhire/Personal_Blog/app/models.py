@@ -85,6 +85,9 @@ class Comment(db.Model):
         db.session.add(self)
         db.session.commit()
 
+    def delete_comment(self):
+        db.session.delete(self)
+        db.session.commit()
     @classmethod
     def get_comments(cls,blog):
         comments = Comment.query.filter_by(blog_id = blog).all()
@@ -94,7 +97,7 @@ class Comment(db.Model):
         return f'Comment{self.comment}'
 
 class Subscription(UserMixin, db.Model):
-    __tablename__ = 'subs'
+    __tablename__ = 'subscribers'
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(255), unique=True, index=True, nullable=False)
 
