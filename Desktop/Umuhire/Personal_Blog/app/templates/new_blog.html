@@ -4,9 +4,12 @@
 {% block content %}
     <div class="container">
         <div class="col-md-12">
-            <h3>Create a blog</h3>
-            <hr>
-            {{ wtf.quick_form(blog_form) }}
+            <div class="jumbotron" style="background-color:bisque;">
+                    <link href="https://fonts.googleapis.com/css?family=Shadows+Into+Light+Two&display=swap" rel="stylesheet">
+                <h3 style="text-align:center;font-family: 'Shadows Into Light Two', cursive">write a blog your blog here</h3>
+           
+                {{ wtf.quick_form(blog_form) }}
+            </div>
         </div>
 
     </div>

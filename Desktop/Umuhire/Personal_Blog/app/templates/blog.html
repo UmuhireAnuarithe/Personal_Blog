@@ -8,23 +8,31 @@
 <div class="col-md-12">
     <div class="container">
         <div class="jumbotron" style="background-color:bisque;">
-            <h3>{{blog.blog_title}}</h3>
-            <hr>
-            <p>{{blog.blog_content}}</p>
-            <span>
-                <p>Posted on {{date}} by {{blog.user.username| capitalize}}</p>
-                <!-- </div>   -->
-                <!-- </div>
-    <div class="row"> -->
-                <h4 style="padding:20px;">Comments</h4>
-                <hr>
-                {{macro.displayComments(comments)}}
-                {% if current_user.is_authenticated %}
-                {{ wtf.quick_form(comment_form) }}
-                {%endif%}
+            <div class="row">
+                <div class="col-md-6">
+                    
+                        <link href="https://fonts.googleapis.com/css?family=Josefin+Slab|Shadows+Into+Light+Two|Viga&display=swap" rel="stylesheet">
+
+                    <h3 style="font-family: 'Viga', sans-serif;;text-align:center;border-bottom:5px solid black;padding: 30px;">{{blog.blog_title}}</h3>
                 
+                    <p style="margin-top :50px;">{{blog.blog_content}}</p>
+                    <span>
+                    <p style="margin-top :30px;margin-bottom :50px;">Posted on {{date}} by {{blog.user.username| capitalize}}</p>
+                    
+                    {% if current_user.is_authenticated %}
+                    {{ wtf.quick_form(comment_form) }}
+                    {%endif%}
+                
+                 </div>
+                <div class="col-md-6">
+                        <link href="https://fonts.googleapis.com/css?family=Josefin+Slab|Shadows+Into+Light+Two|Viga&display=swap" rel="stylesheet">
+                <h4 style="font-family: 'Viga', sans-serif;;text-align:center;border-bottom:5px solid black;padding: 30px;">Comments</h4>
+                    
+                    {{macro.displayComments(comments)}}
+                </div> 
             </span>
         </div>
+      
     </div>
 </div>
 {%endblock%}}
